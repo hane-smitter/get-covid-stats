@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID19 | Know the numbers</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/img/logo.png" alt="">
+            <p>COVID-19 <br>STATS</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="stats">
+            <div class="latest-report" style="--report-prefix: 11px;">
+                <div class="country">
+                    <div class="name">
+                        Loading...
+                    </div>
+                    <div class="date">0</div>
+                    <button class="change-country">change</button>
+                    <div class="search-country hide">
+                        <div class="search-box">
+                            <input type="text" id="search-input" placeholder="search country..." autocomplete="off">
+                            <img src="/img/close.svg" class="close">
+                        </div>
+                        <div class="country-list">
+                        </div>
+                    </div>
+                </div>
+                <div class="total-cases">
+                    <div class="title">Cases</div>
+                    <div class="new-value">+0</div>
+                    <div class="value">
+                        <span style=" font-size:  var(--report-prefix);">Current:</span> <span class="current">0</span>
+                    </div>
+                    <div class="value"><span style=" font-size:  var(--report-prefix);">Cumulative:</span> <span class="cumulative">0</span></div>
+                </div>
+                <div class="recovered">
+                    <div class="title">Recoveries</div>
+                    <div class="new-value">+0</div>
+                    <div class="value">
+                        <span style=" font-size:  var(--report-prefix);">Cumulative:</span>
+                        <span class="cumulative">0</span>
+                    </div>
+                </div>
+                <div class="deaths">
+                    <div class="title">Deaths</div>
+                    <div class="new-value">+0</div>
+                    <div class="value">
+                        <span style=" font-size:  var(--report-prefix);">Cumulative:</span>
+                        <span class="cumulative">0</span>
+                    </div>
+            </div>
+            <div class="chart">
+                <canvas id="axes-line-chart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="copyright">
+                <p>copyright &copy;2020 Zach</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+    <script type="module" src="/js/script.js"></script>
+    <script type="module"  src="/js/countries.js"></script>
+</body>
+</html>
