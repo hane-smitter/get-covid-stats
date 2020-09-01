@@ -1,10 +1,10 @@
 import {fetchCovidData} from './writePage.js';
 import {axesLinearChart} from './drawChart.js';
 
-var countryCode = geoplugin_countryCode();
-var countryName = geoplugin_countryName();
+var countryName;
 
 async function justWaitForData(){
+    countryName = await geoplugin_countryName();
     await fetchCovidData(countryName);
     axesLinearChart();
 }

@@ -282,7 +282,7 @@ main {
   border-radius: 10px;
   background: #007eab;
   text-transform: uppercase;
-  transition: transform 50ms ease-in-out;
+  transition: transform 30ms ease-in-out;
   transform: scale(1.01);
 }
 .change-country:active {
