@@ -291,7 +291,7 @@ main {
 
 .title {
   font-size: 1.3em;
-  width: fit-content;
+  width: min-content;
   margin-bottom: 10px;
   border-bottom: 1px solid rgba(255,255,255,.2);
 }
@@ -366,7 +366,7 @@ main {
   border: none;
   background-color: transparent;
   color: #fff;
-  padding-left: 3px 3px 3px 15px;
+  padding: 3px 3px 3px 15px;
   font-size: 14px;
 }
 
@@ -386,6 +386,15 @@ main {
   opacity: 0.9;
   overflow-y: auto;
   overflow-x: hidden;
+
+}
+@supports(display: grid) {
+  .country-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-auto-rows: min-content;
+    align-items: start;
+  }
 }
 
 .country-list > ul {
@@ -409,7 +418,6 @@ footer {
   bottom: 0;
   width: 100%;
   height: 60px;
-  max-width: 1200px;
   margin: 0 auto;
   background-color: #6a149b;
 }

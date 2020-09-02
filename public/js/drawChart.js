@@ -3,7 +3,9 @@ const ctx = document.getElementById('axes-line-chart').getContext('2d');
 let myNewChart;
 
 function axesLinearChart() {
-	myNewChart?.destroy();
+	if( typeof myNewChart == 'object' ) {
+		myNewChart.destroy();
+	}
 	myNewChart = new Chart(ctx, {
 		type: 'line',
 		data: {

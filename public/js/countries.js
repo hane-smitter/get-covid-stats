@@ -1,4 +1,4 @@
-import { fetchCovidData } from './writePage.js';
+import { fetchCovidData, fetchCovidData2 } from './writePage.js';
 import {axesLinearChart} from './drawChart.js';
 
 let country_list = [
@@ -231,6 +231,9 @@ let createCountryList = () => {
             await AnimateOnLoading( country );
             axesLinearChart();
             resetCountryList();
+            if(window.innerWidth < 770) {
+                $changeCountryBtn.click();
+            }
 
         });
     });
@@ -266,22 +269,22 @@ function resetCountryList() {
 }
 async function AnimateOnLoading( country ) {
     const div = document.createElement('div');
-            div.className = 'cover';
-            document.body.appendChild( div );
+    div.className = 'cover';
+    document.body.appendChild( div );
 
-            const divChild = document.createElement('div');
-            divChild.className = 'ring';
-            divChild.textContent = 'Loading';
+    const divChild = document.createElement('div');
+    divChild.className = 'ring';
+    divChild.textContent = 'Loading';
 
-            const divChild_spanChild = document.createElement('span');
-            divChild.appendChild(divChild_spanChild);
+    const divChild_spanChild = document.createElement('span');
+    divChild.appendChild(divChild_spanChild);
 
-            div.appendChild( divChild );
+    div.appendChild( divChild );
 
-            document.querySelector('.name').classList.add('loading');
+    document.querySelector('.name').classList.add('loading');
 
-            await fetchCovidData(country.name);
+    await fetchCovidData2(country.name);
 
-            document.querySelector('.name').classList.remove('loading');
-            document.body.removeChild(div);
+    document.querySelector('.name').classList.remove('loading');
+    document.body.removeChild(div);
 }

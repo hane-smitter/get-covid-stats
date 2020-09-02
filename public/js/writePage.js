@@ -1,4 +1,4 @@
-import { getCovidStats } from './getStats.js';
+import { getCovidStats, getCovidStats2 } from './getStats.js';
 
 let $statsDataSection = document.getElementsByClassName('latest-report')[0];
 
@@ -8,18 +8,30 @@ let $cases = $statsDataSection.querySelector('.total-cases');
 let $recoveries = $statsDataSection.querySelector('.recovered');
 let $deaths = $statsDataSection.querySelector('.deaths');
 
-async function fetchCovidData( countryName ) {
-    await getCovidStats(countryName.replace(/\s/g, '-'))
-        .then((res) => {
-            updatePage(countryName, res);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+async function fetchCovidData() {
+    try {
+        const CovidResults = await getCovidStats();
+        console.log(CovidResults);
+        updatePage(CovidResults);
+
+    } catch (err) {
+        console.log(err);
+    }
     
 }
-function updatePage( country, data ) {
-    $nameOfCountry.textContent = country;
+async function fetchCovidData2( countryName ) {
+    try {
+        const CovidResults = await getCovidStats2( countryName );
+        console.log(CovidResults);
+        updatePage(CovidResults);
+
+    } catch (err) {
+        console.log(err);
+    }
+    
+}
+function updatePage( data ) {
+    $nameOfCountry.textContent = data.response[0].country.replace(/\-/g, ' ');
     $datePosted.textContent = sanitizeDate(data.response[0].time);
 
     $cases.querySelector('.new-value').textContent = '+' + formatNumber(data.response[0].cases.new);
@@ -61,5 +73,6 @@ function formatNumber( num ) {
 }
 
 export {
-    fetchCovidData
+    fetchCovidData,
+    fetchCovidData2
 }
