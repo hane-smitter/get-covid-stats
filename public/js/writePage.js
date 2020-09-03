@@ -26,6 +26,7 @@ async function fetchCovidData2( countryName ) {
         updatePage(CovidResults);
 
     } catch (err) {
+        
         console.log(err);
     }
     

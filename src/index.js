@@ -1,6 +1,9 @@
 const path =require('path');
 const express = require('express');
 const unirest = require('unirest');
+const { Crawler } = require('es6-crawler-detect');
+
+const { listOfCountries } = require('./countries/countries.js');
 
 const app = express();
 
@@ -10,11 +13,13 @@ const publicDirPath = path.join(__dirname, '../public');
 app.use(express.static(publicDirPath));
 
 app.get('/pandemic', async (req, res) => {
-    // if( !req.query.country ) {
-    //     return res.send({
-    //         error: "You must provide a contry name"
-    //     })
-    // }
+
+    const crawlerDetector = new Crawler(req);
+    if( !!crawlerDetector ) {
+        return res.send({
+            isWebCrawler: 'webcrawler accessed the route'
+        });
+    }
 
     //fetching visitors info using ipgeolocation.io api
     try {
@@ -25,8 +30,9 @@ app.get('/pandemic', async (req, res) => {
             });
         }
 
-        const countryName = geoData.body.country_name.replace(/\s/g, '-');
-
+        const countryCode = geoData.body.country_code2;
+        const countryObj =  listOfCountries.find( (country) => country.code == countryCode);
+        var countryName = countryObj.name.replace(/\s/g, '-');
         const covidData = await unirest
                                     .get(`https://covid-193.p.rapidapi.com/history?country=${countryName}`)
                                     .headers({
@@ -49,6 +55,15 @@ app.get('/pandemic', async (req, res) => {
 });
 
 app.get('/pandemic2', async (req, res) => {
+
+    const crawlerDetector = new Crawler(req);
+    if( !!crawlerDetector ) {
+        return res.send({
+            isWebCrawler: 'webcrawler accessed the route'
+        });
+    }
+
+
     if( !req.query.country ) {
         return res.status(400).send({
             error: "You must provide a contry name"
