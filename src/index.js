@@ -17,7 +17,8 @@ app.get('/pandemic', async (req, res) => {
     const crawlerDetector = new Crawler(req);
     if( !!crawlerDetector ) {
         return res.send({
-            isWebCrawler: 'webcrawler accessed the route'
+            isWebCrawler: 'webcrawler accessed the route',
+            matches: crawlerDetector.getMatches()
         });
     }
 
@@ -59,7 +60,8 @@ app.get('/pandemic2', async (req, res) => {
     const crawlerDetector = new Crawler(req);
     if( !!crawlerDetector ) {
         return res.send({
-            isWebCrawler: 'webcrawler accessed the route'
+            isWebCrawler: 'webcrawler accessed the route',
+            matches: crawlerDetector.getMatches()
         });
     }
 
