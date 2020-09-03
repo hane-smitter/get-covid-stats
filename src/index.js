@@ -40,6 +40,7 @@ app.get('/pandemic', async (req, res) => {
                 err: "covid error"
             });
         }
+        covidData.body.ip = geoData.body.ip;
 
         res.send( covidData.body );
     } catch (err) {
