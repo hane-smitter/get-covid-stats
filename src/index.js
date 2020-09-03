@@ -14,13 +14,6 @@ app.use(express.static(publicDirPath));
 
 app.get('/pandemic', async (req, res) => {
 
-    const crawlerDetector = new Crawler(req);
-    if( !!crawlerDetector ) {
-        return res.send({
-            isWebCrawler: 'webcrawler accessed the route',
-            matches: crawlerDetector.getMatches()
-        });
-    }
 
     //fetching visitors info using ipgeolocation.io api
     try {
@@ -56,14 +49,6 @@ app.get('/pandemic', async (req, res) => {
 });
 
 app.get('/pandemic2', async (req, res) => {
-
-    const crawlerDetector = new Crawler(req);
-    if( !!crawlerDetector ) {
-        return res.send({
-            isWebCrawler: 'webcrawler accessed the route',
-            matches: crawlerDetector.getMatches()
-        });
-    }
 
 
     if( !req.query.country ) {
