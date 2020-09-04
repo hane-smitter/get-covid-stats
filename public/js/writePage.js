@@ -8,9 +8,9 @@ let $cases = $statsDataSection.querySelector('.total-cases');
 let $recoveries = $statsDataSection.querySelector('.recovered');
 let $deaths = $statsDataSection.querySelector('.deaths');
 
-async function fetchCovidData() {
+async function fetchCovidData( ip ) {
     try {
-        const CovidResults = await getCovidStats();
+        const CovidResults = await getCovidStats( ip );
         console.log(CovidResults);
         updatePage(CovidResults);
 

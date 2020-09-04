@@ -1,11 +1,17 @@
 import {fetchCovidData} from './writePage.js';
 import {axesLinearChart} from './drawChart.js';
 
-
-async function justWaitForData(){
-    await fetchCovidData();
+var justWaitForData = async ( ip ) => {
+    await fetchCovidData( ip );
     axesLinearChart();
 }
-justWaitForData();
-
-
+let xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://api.ipify.org?format=json');
+xhr.responseType = 'json';
+xhr.onload = () => {
+    if( xhr.status == 200 ) {
+        console.log(xhr.response);
+        justWaitForData( xhr.response.ip );
+    }
+}
+xhr.send();

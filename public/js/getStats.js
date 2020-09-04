@@ -1,7 +1,7 @@
-const getCovidStats = () => {
+const getCovidStats = ( ip ) => {
     return new Promise( (resolve, reject) => {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", `/pandemic`);
+        xhr.open("GET", `/pandemic?ip=${ip}`);
         xhr.responseType = 'json';
         xhr.onload = () => {
             if(xhr.status >= 200 && xhr.status < 300) {

@@ -13,11 +13,9 @@ const publicDirPath = path.join(__dirname, '../public');
 app.use(express.static(publicDirPath));
 
 app.get('/pandemic', async (req, res) => {
-
-
     //fetching visitors info using ipgeolocation.io api
     try {
-        const geoData = await unirest.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.GEO_APIKEY}`)
+        const geoData = await unirest.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.GEO_APIKEY}&ip=${req.query.ip}`)
         if( !geoData.status >= 200 && !geoData.status < 300 ) {
             return res.status(geoData.status).send({
                 err: "geo Error"
