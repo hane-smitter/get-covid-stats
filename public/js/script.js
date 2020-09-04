@@ -10,7 +10,6 @@ xhr.open('GET', 'https://api.ipify.org?format=json');
 xhr.responseType = 'json';
 xhr.onload = () => {
     if( xhr.status == 200 ) {
-        console.log(xhr.response);
         justWaitForData( xhr.response.ip );
     }
 }

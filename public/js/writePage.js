@@ -11,7 +11,6 @@ let $deaths = $statsDataSection.querySelector('.deaths');
 async function fetchCovidData( ip ) {
     try {
         const CovidResults = await getCovidStats( ip );
-        console.log(CovidResults);
         updatePage(CovidResults);
 
     } catch (err) {
@@ -22,7 +21,6 @@ async function fetchCovidData( ip ) {
 async function fetchCovidData2( countryName ) {
     try {
         const CovidResults = await getCovidStats2( countryName );
-        console.log(CovidResults);
         updatePage(CovidResults);
 
     } catch (err) {

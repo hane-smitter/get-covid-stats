@@ -1,7 +1,6 @@
 const path =require('path');
 const express = require('express');
 const unirest = require('unirest');
-const { Crawler } = require('es6-crawler-detect');
 
 const { listOfCountries } = require('./countries/countries.js');
 
